@@ -12,32 +12,27 @@ class Solution:
             fast = fast.next.next
             slow = slow.next
         
-        l1 = head
         l2 = slow.next
         slow.next = None
+        
+        prev = None
+        while l2:
+            temp = l2.next
+            l2.next = prev
+            prev = l2
+            l2 = temp
+        
+        l2 = prev
+        l1 = head
 
-        def reverseList(head):
-            if not head: 
-                return None 
-            pre = head
-            tr = head.next
-            while tr != None:
-                temp = tr.next
-                tr.next = pre
-                pre = tr
-                tr = temp
-            head.next = None 
-            return pre
-        l2 = reverseList(l2)
+        while l2:
+            tmp1 = l1.next
+            tmp2 = l2.next
 
-        while(l2 != None):
-            nextNode = l2.next
-            temp = l1.next
             l1.next = l2
-            l2.next = temp
-            l1 = l2.next
-            l2 = nextNode
-
+            l2.next = tmp1
+            l1 = tmp1
+            l2 = tmp2
 
 
         
