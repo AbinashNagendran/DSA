@@ -13,12 +13,12 @@ class Solution:
             return None
         old_to_new = {}
         tr = head
+
         while(tr):
             new_node = Node(tr.val)
-            new_node.next = None
-            new_node.random = None
             old_to_new[tr] = new_node
             tr = tr.next
+
         tr = head
         new_head = old_to_new[head]
         curr = new_head
