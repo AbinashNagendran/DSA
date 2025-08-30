@@ -11,20 +11,18 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        ans = [root.val]
-        counter = [0]
-
-
+        self.ans = None
+        self.counter = 0
         def dfs(root):
             if root == None:
                 return
             dfs(root.left)
-            counter[0]+=1
-            if counter[0] == k:
-                ans[0] = root.val
+            self.counter+=1
+            if self.counter == k:
+                self.ans = root.val
                 return
             dfs(root.right)
             return 
         dfs(root)
-        return ans[0]
+        return self.ans
         
