@@ -4,25 +4,22 @@ class Solution(object):
         :type grid: List[List[str]]
         :rtype: int
         """
-        def countIsland(i, j):
-            if not (i >= 0 and i < len(grid) and
-                j >= 0 and j < len(grid[0]) and
-                grid[i][j] == "1" and not (i, j) in seen):
-                return 
-            seen.add((i, j))
-            countIsland(i + 1, j)
-            countIsland(i - 1, j)
-            countIsland(i, j  + 1)
-            countIsland(i, j - 1)
-            return
+        def dfs(i, j):
+            if not (0 <= i < len(grid) and 0 <= j < len(grid[0])):
+                return
+            if grid[i][j] != "1":
+                return
+            grid[i][j] = "0"  # mark visited
+            dfs(i + 1, j)
+            dfs(i - 1, j)
+            dfs(i, j + 1)
+            dfs(i, j - 1)
 
-        seen = set() 
         count = 0
-        
         for i in range(len(grid)):
             for j in range(len(grid[0])):
-                if grid[i][j] == "1" and not (i, j) in seen:
-                    countIsland(i, j)
-                    count+=1
+                if grid[i][j] == "1":
+                    dfs(i, j)
+                    count += 1
         return count
-        
+                
